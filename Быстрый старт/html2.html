@@ -1,0 +1,40 @@
+<style>
+table {
+width: 100%;
+text-align: center;
+}
+
+th {
+font-weight: bold !important;
+}
+
+table, td, th {
+border: 1px solid black !important;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+artistsTb = document.querySelectorAll('a[href="#table"]');
+artistsTbContent = "<table><thead><tr><th>Artist<br></th><th>Genre</th><th>Website</th></tr></thead><tbody><tr><td>Led Zepplin</td><td>Rock<br></td><td>http://ledzeppelin.com/</td></tr><tr><td>Bob Marley<br></td><td>Reggae<br></td><td>http://bobmarley.com<br></td></tr></tbody></table>"
+insertTable(artistsTb, artistsTbContent);
+
+namesTb = document.querySelectorAll('a[href="#namesTable"]');
+namesTbContent = "<table><thead><tr><th>Firstname</th><th>Lastname</th><th>Age</th></tr></thead><tbody><tr><td>John</td><td>Doe</td><td>55</td></tr><tr><td>Sarah</td><td>James<br></td><td>30</td></tr></tbody></table>"
+insertTable(namesTb, namesTbContent);
+
+})
+const insertTable = (tb, tbConent) => {
+if (tb.length > 0) {
+client = document.querySelectorAll(".csh-header-background.csh-theme-background-color-default.csh-theme-background-color-gradient-default")[0];
+colourStyle = getComputedStyle(client).backgroundColor;
+tableCol = 'rgba' + colourStyle.slice(3, -1) + ', 0.4)'
+
+table = document.createElement('table');
+table.innerHTML = tbConent;
+table.tHead.style.backgroundColor = tableCol;
+tb[0].parentNode.insertBefore(table, tb[0].nextSibling);
+}
+}
+</script>

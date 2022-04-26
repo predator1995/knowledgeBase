@@ -1,0 +1,43 @@
+<style>
+  table {
+  width: 100%;
+  text-align: center;
+  }
+  
+  th {
+  font-weight: bold !important;
+  }
+  
+  table, td, th {
+  border: 1px solid black !important;
+  }
+  </style>
+<script>
+const insertTable = (tbName, tbConent) => {
+  tb = document.querySelectorAll(`a[href="#${tbName}"]`);
+  if (tb.length > 0) {
+  client = document.querySelectorAll(".csh-header-background.csh-theme-background-color-default.csh-theme-background-color-gradient-default")[0];
+  colourStyle = getComputedStyle(client).backgroundColor;
+  tableCol = 'rgba' + colourStyle.slice(3, -1) + ', 0.4)';
+
+  table = document.createElement('table');
+  table.innerHTML = tbConent;
+  table.tHead.style.backgroundColor = tableCol;
+  tb[0].parentNode.insertBefore(table, tb[0].nextSibling);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  //Auth
+  insertTable("auth",'<table><thead><tr><th>&nbsp;&nbsp;&nbsp;<br>Параметр&nbsp;&nbsp;&nbsp;</th><th>&nbsp;&nbsp;&nbsp;<br>Тип&nbsp;&nbsp;&nbsp;данных&nbsp;&nbsp;&nbsp;</th><th>&nbsp;&nbsp;&nbsp;<br>Обязательность&nbsp;&nbsp;&nbsp;</th><th>&nbsp;&nbsp;&nbsp;<br>Описание&nbsp;&nbsp;&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;&nbsp;&nbsp;<br>login&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>varchar2(50)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Да&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Логин, полученный при регистрации&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>password&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>varchar2(20)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Да&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Пароль, соответствующий логину&nbsp;&nbsp;&nbsp;</td></tr></tbody></table>');
+  
+  // Regions
+  insertTable("regionImportRequest", '<table><thead><tr><th>&nbsp;&nbsp;&nbsp;<br>Параметр&nbsp;&nbsp;&nbsp;</th><th>   <br>Тип данных   </th><th>   <br>Обязательность   </th><th>&nbsp;&nbsp;&nbsp;<br>Описание&nbsp;&nbsp;&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;&nbsp;&nbsp;<br>region&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>[]&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Да&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Массив с&nbsp;&nbsp;&nbsp;данными о регионе&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>code&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>varchar2(50)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Да&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Уникальный код региона&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>name&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>varchar2(100)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Да&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Полное&nbsp;&nbsp;&nbsp;наименование региона&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>region_kind&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>varchar2(1)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Да&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Тип региона (C – страна, R – область,&nbsp;&nbsp;&nbsp;T – город/поселок, D – район/улица)&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>state&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>varchar2(1)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Да&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Статус&nbsp;&nbsp;&nbsp;региона в системе (А –&nbsp;&nbsp;&nbsp;активный, Р – неактивный)&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>parent_code&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>varchar2(50)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Нет&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Код родительского региона&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>latlng&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>varchar2(64)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Да&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Координаты&nbsp;&nbsp;&nbsp;региона на карте&nbsp;&nbsp;&nbsp;</td></tr></tbody></table>');
+  insertTable("regionImportResponse",'<table><thead><tr><th>&nbsp;&nbsp;&nbsp;<br>Параметр&nbsp;&nbsp;&nbsp;</th><th>&nbsp;&nbsp;&nbsp;<br>Тип данных&nbsp;&nbsp;&nbsp;</th><th>&nbsp;&nbsp;&nbsp;<br>Описание&nbsp;&nbsp;&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;&nbsp;&nbsp;<br>successes&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>[]&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Массив&nbsp;&nbsp;&nbsp;успешно обработанных данных&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>errors&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>[]&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Массив данных с ошибками&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>code&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>varchar2(50)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Уникальный&nbsp;&nbsp;&nbsp;код записи&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>message&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>varchar2&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Уточняющее ошибку сообщение от сервера&nbsp;&nbsp;&nbsp;</td></tr></tbody></table>');
+
+  insertTable("regionExportRequest",'<table><thead><tr><th>&nbsp;&nbsp;&nbsp;<br>Параметр&nbsp;&nbsp;&nbsp;</th><th>&nbsp;&nbsp;&nbsp;<br>Тип данных&nbsp;&nbsp;&nbsp;</th><th>&nbsp;&nbsp;&nbsp;<br>Обязательность&nbsp;&nbsp;&nbsp;</th><th>&nbsp;&nbsp;&nbsp;<br>Описание&nbsp;&nbsp;&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;&nbsp;&nbsp;<br>code&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>varchar2(50)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Да&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Уникальный&nbsp;&nbsp;&nbsp;код региона, присвоенный пользователем в системе (позволяет&nbsp;&nbsp;&nbsp;выбрать/отфильтровать услугу по внесенному коду)&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>begin_created_on<br>&nbsp;&nbsp;&nbsp;<br> &nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>date(dd.mm.yyyy hh24:mi:ss)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Нет&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Фильтр по датам создания&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>end_created_on&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>date(dd.mm.yyyy&nbsp;&nbsp;&nbsp;hh24:mi:ss)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Нет&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Фильтр по&nbsp;&nbsp;&nbsp;последней дате создания&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>begin_modified_on&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>date(dd.mm.yyyy hh24:mi:ss)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Нет&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Фильтр по датам внесенных изменений&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>end_modified_on&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>date(dd.mm.yyyy&nbsp;&nbsp;&nbsp;hh24:mi:ss)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Нет&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Фильтр по&nbsp;&nbsp;&nbsp;последней дате изменений&nbsp;&nbsp;&nbsp;</td></tr></tbody></table>');
+  insertTable("regionExportResponse",'<table><thead><tr><th>&nbsp;&nbsp;&nbsp;<br>Параметр&nbsp;&nbsp;&nbsp;</th><th>&nbsp;&nbsp;&nbsp;<br>Тип данных&nbsp;&nbsp;&nbsp;</th><th>&nbsp;&nbsp;&nbsp;<br>Описание&nbsp;&nbsp;&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;&nbsp;&nbsp;<br>region&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>[]&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Массив с&nbsp;&nbsp;&nbsp;данными о регионе&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>code&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>varchar2(50)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Уникальный код региона&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>name&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>varchar2(100)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Полное&nbsp;&nbsp;&nbsp;наименование региона&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>region_kind&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>varchar2(1)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Тип региона (C – страна, R – область,&nbsp;&nbsp;&nbsp;T – город/поселок, D – район/улица)&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>parent_code&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>varchar2(50)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Код родительского&nbsp;&nbsp;&nbsp;региона&nbsp;&nbsp;&nbsp;</td></tr><tr><td>&nbsp;&nbsp;&nbsp;<br>state&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>varchar2(1)&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;<br>Статус региона в системе (А - активный, Р - неактивный)&nbsp;&nbsp;&nbsp;</td></tr></tbody></table>');
+
+});
+</script>
